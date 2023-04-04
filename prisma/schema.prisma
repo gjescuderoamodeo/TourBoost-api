@@ -1,0 +1,70 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Usuario {
+  idUsuario  Int        @id @default(autoincrement())
+  nombre     String
+  apellidos  String
+  password   String
+  correo     String
+  admin      Boolean
+  marcadores Marcador[]
+  reservas   Reserva[]
+}
+
+model Marcador {
+  idUsuario Int
+  idLugar   Int
+  usuario   Usuario @relation(fields: [idUsuario], references: [idUsuario])
+  lugar     Lugar   @relation(fields: [idLugar], references: [idLugar])
+
+  @@id([idUsuario, idLugar])
+}
+
+model Hotel {
+  idHotel           Int       @id @default(autoincrement())
+  nombre            String
+  direccion         String
+  plazasDisponibles Int
+  plazasTotales     Int
+  telefono_contacto String
+  lugar             Lugar     @relation(fields: [idLugar], references: [idLugar])
+  idLugar           Int
+  reservas          Reserva[]
+}
+
+model Reserva {
+  idReserva    Int      @id @default(autoincrement())
+  fecha_inicio DateTime
+  fecha_fin    DateTime
+  idUsuario    Int
+  idHotel      Int
+  usuario      Usuario  @relation(fields: [idUsuario], references: [idUsuario])
+  hotel        Hotel    @relation(fields: [idHotel], references: [idHotel])
+}
+
+model Lugar {
+  idLugar    Int        @id @default(autoincrement())
+  latitud    Float
+  longitud   Float
+  tipo_lugar String
+  nombrePais String
+  pais       Pais       @relation(fields: [nombrePais], references: [nombre])
+  hoteles    Hotel[]
+  marcadores Marcador[]
+}
+
+model Pais {
+  nombre      String  @id
+  codigo_pais String
+  lugares     Lugar[]
+}
