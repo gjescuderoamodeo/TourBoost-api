@@ -53,14 +53,24 @@ model Reserva {
 }
 
 model Lugar {
-  idLugar    Int        @id @default(autoincrement())
-  latitud    Float
-  longitud   Float
-  tipo_lugar String
-  nombrePais String
-  pais       Pais       @relation(fields: [nombrePais], references: [nombre])
-  hoteles    Hotel[]
-  marcadores Marcador[]
+  idLugar         Int             @id @default(autoincrement())
+  latitud         Float
+  longitud        Float
+  tipo_lugar      String
+  nombrePais      String
+  pais            Pais            @relation(fields: [nombrePais], references: [nombre])
+  hoteles         Hotel[]
+  marcadores      Marcador[]
+  recomendaciones Recomendacion[]
+}
+
+model Recomendacion {
+  idRecomendacion Int    @id @default(autoincrement())
+  nombre          String
+  imagen          String
+  descripcion     String
+  lugar           Lugar  @relation(fields: [idLugar], references: [idLugar])
+  idLugar         Int
 }
 
 model Pais {
