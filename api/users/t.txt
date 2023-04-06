@@ -1,0 +1,19 @@
+//crear recomendacion
+app.post('/recomendacion', async (req, res) => {
+  const { nombre, imagen, descripcion, idLugar } = req.body;
+
+  const nuevaRecomendacion = await prisma.recomendacion.create({
+    data: {
+      nombre,
+      imagen,
+      descripcion,
+      lugar: {
+        connect: {
+          idLugar: idLugar // Conectar la recomendación con el lugar correspondiente
+        }
+      }
+    }
+  });
+
+  res.json(nuevaRecomendacion);
+})
