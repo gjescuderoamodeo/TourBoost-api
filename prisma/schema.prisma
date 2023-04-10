@@ -13,10 +13,10 @@ datasource db {
 
 model Usuario {
   idUsuario  Int        @id @default(autoincrement())
-  nombre     String
+  nombre     String     
   apellidos  String
-  password   String
-  correo     String
+  password   String     
+  correo     String     @unique
   admin      Boolean
   marcadores Marcador[]
   reservas   Reserva[]
