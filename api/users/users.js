@@ -1,4 +1,4 @@
-import { instanciaSingleton } from "../prisma/prisma.js";
+import { instanciaSingleton } from "../../prisma/prisma.js";
 import bcrypt from 'bcrypt';
 
 const prisma = instanciaSingleton;
