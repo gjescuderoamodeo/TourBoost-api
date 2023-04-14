@@ -1,5 +1,5 @@
 import express from 'express';
-import { obtenerUsuarios, crearUsuario } from './api/users/users.js';
+import { obtenerUsuarios, crearUsuario, login, autenticar } from './api/users/users.js';
 import { crearRecomendaciones ,obtenerRecomendaciones, obtenerRecomendacionesLugar } from './api/recomendacion/recomendacion.js';
 import { instanciaSingleton } from './prisma/prisma.js';
 import dotenv from 'dotenv';
@@ -14,7 +14,7 @@ const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
 
-app.get('/usuario', obtenerUsuarios);
+app.get('/usuario',autenticar, obtenerUsuarios);
 app.post('/usuario', crearUsuario);
 app.get('/recomendacion', obtenerRecomendaciones);
 app.get('/lugaresrecomendacion/:idLugar', obtenerRecomendacionesLugar);
@@ -22,6 +22,9 @@ app.get('/lugaresrecomendacion/:idLugar', obtenerRecomendacionesLugar);
 
 //lugares
 app.get('/lugar', obtenerLugares);
+
+//login
+app.post('/login', login); // Agregar la ruta para el inicio de sesión
 
 app.listen(PORT, () => {
   console.log(`Servidor iniciado en el puerto ${PORT}`);
