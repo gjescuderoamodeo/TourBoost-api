@@ -4,6 +4,7 @@ import { crearRecomendaciones ,obtenerRecomendaciones, obtenerRecomendacionesLug
 import { instanciaSingleton } from './prisma/prisma.js';
 import dotenv from 'dotenv';
 import { obtenerLugares } from './api/lugar/lugar.js';
+import {obtenerReservas ,obtenerReservasPorUsuario} from './api/reserva/reserva.js'
 
 dotenv.config();
 
@@ -22,6 +23,11 @@ app.get('/lugaresrecomendacion/:idLugar', obtenerRecomendacionesLugar);
 
 //lugares
 app.get('/lugar', obtenerLugares);
+
+//reservas
+app.get('/reserva', obtenerReservas);
+app.get('/reserva/:idUsuario', obtenerReservasPorUsuario);
+
 
 //login
 app.post('/login', login); // Agregar la ruta para el inicio de sesión
