@@ -1,8 +1,8 @@
-//import { instanciaSingleton } from "../../prisma/prisma.js";
-const { PrismaClient } = require('@prisma/client');
+import { instanciaSingleton } from "../../prisma/prisma.js";
+//const { PrismaClient } = require('@prisma/client');
 
-const prisma = new PrismaClient();
-//const prisma = instanciaSingleton;
+//const prisma = new PrismaClient();
+const prisma = instanciaSingleton;
 
 // Obtener todos las reservas
 async function obtenerReservas(req, res) {
