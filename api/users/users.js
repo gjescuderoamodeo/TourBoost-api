@@ -34,19 +34,27 @@ async function crearUsuario(req, res) {
     // Hash de la contraseña
     const hashPassword = await bcrypt.hash(password, salt);
 
-    const nuevoUsuario = await prisma.usuario.create({
-      data: {
-        nombre,
-        apellidos,
-        password: hashPassword, // Guardar el hash de la contraseña en la base de datos
-        correo,
-        admin
-      }
-    });
+    const correoIgual = await prisma.usuario.findFirst(
+      {where:{correo:correo}}
+    );
 
-    // Generar y devolver un token de autenticación para el nuevo usuario
-    const token = generarToken(nuevoUsuario);
-    res.json({ usuario: nuevoUsuario, token });
+    if(correoIgual){
+      res.status(409).json({ error: "Ya existe ese correo" });
+    }else{
+      const nuevoUsuario = await prisma.usuario.create({
+        data: {
+          nombre,
+          apellidos,
+          password: hashPassword, // Guardar el hash de la contraseña en la base de datos
+          correo,
+          admin
+        }
+      });
+
+      // Generar y devolver un token de autenticación para el nuevo usuario
+      const token = generarToken(nuevoUsuario);
+      res.json({ usuario: nuevoUsuario, token });
+  }
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "No se pudo crear el usuario" });
