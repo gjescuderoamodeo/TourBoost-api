@@ -24,10 +24,11 @@ async function obtenerUsuarios(req, res) {
 
 // Crear un nuevo usuario
 async function crearUsuario(req, res) {
-  const { nombre, apellidos, password, correo, admin } = req.body;
+  const { nombre, apellidos, password, correo} = req.body;
   
   // Generar una cadena aleatoria para utilizar como salt (número de rondas de hashing)
   const salt = await bcrypt.genSalt(10);
+  const admin=false
 
   try {
     // Hash de la contraseña
