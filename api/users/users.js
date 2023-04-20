@@ -17,8 +17,26 @@ async function obtenerUsuarios(req, res) {
     const usuarios = await prisma.usuario.findMany();
     res.json(usuarios);
   } catch (error) {
-    console.error(error);
     res.status(500).json({ error: "No se pudieron obtener los usuarios" });
+  }
+}
+
+// Comprobar si es admin
+async function adminCheck(req, res) {
+  const {correo} = req.body;
+
+  try {
+    const usuario = await prisma.usuario.findFirst({
+      where:{correo:correo}
+    });
+
+    if(usuario.admin){
+      res.status(201).json(true);
+    }else{
+      res.status(202).json(false);
+    }
+  } catch (error) {
+    res.status(500).json({ error: "No se pudo obtener el usuario" });
   }
 }
 
@@ -110,4 +128,4 @@ function autenticar(req, res, next) {
   }
 }
 
-export { obtenerUsuarios, crearUsuario, login, autenticar };
+export { obtenerUsuarios, crearUsuario, login, autenticar, adminCheck };
