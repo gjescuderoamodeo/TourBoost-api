@@ -6,16 +6,18 @@ generator client {
 }
 
 datasource db {
-  provider = "mysql"
+  provider     = "mysql"
   //url      = env("DATABASE_URL")
-  url="mysql://root:SgHAjIj3cR1d7Xe59NWA@containers-us-west-205.railway.app:7313/railway"
+  //url="mysql://root:SgHAjIj3cR1d7Xe59NWA@containers-us-west-205.railway.app:7313/railway"
+  url          = "mysql://rztbv6lfv33wcsbt6qb0:pscale_pw_FWAU7dA9ggW640OHqsVHncK9kuh1Pz5JJRF6n6JEV0s@aws.connect.psdb.cloud/tourboost?sslaccept=strict"
+  relationMode = "prisma"
 }
 
 model Usuario {
   idUsuario  Int        @id @default(autoincrement())
-  nombre     String     
+  nombre     String
   apellidos  String
-  password   String     
+  password   String
   correo     String     @unique
   admin      Boolean
   marcadores Marcador[]
@@ -58,6 +60,7 @@ model Lugar {
   latitud         Float
   longitud        Float
   tipo_lugar      String
+  nombre          String
   nombrePais      String
   pais            Pais            @relation(fields: [nombrePais], references: [nombre])
   hoteles         Hotel[]
