@@ -5,6 +5,7 @@ import { instanciaSingleton } from './prisma/prisma.js';
 import dotenv from 'dotenv';
 import { obtenerLugares, crearLugar } from './api/lugar/lugar.js';
 import { obtenerhoteles, crearHotel } from './api/hotel/hotel.js';
+import { crearPais } from './api/pais/pais.js';
 import {obtenerReservas ,obtenerReservasPorUsuario} from './api/reserva/reserva.js'
 
 dotenv.config();
@@ -33,6 +34,9 @@ app.post('/lugar', crearLugar);
 //reservas
 app.get('/reserva', obtenerReservas);
 app.get('/reserva/:idUsuario', obtenerReservasPorUsuario);
+
+//paises
+app.post('/pais', crearPais);
 
 
 //login
