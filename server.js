@@ -5,6 +5,7 @@ import { instanciaSingleton } from './prisma/prisma.js';
 import dotenv from 'dotenv';
 import { obtenerLugares, crearLugar } from './api/lugar/lugar.js';
 import { obtenerhoteles, crearHotel } from './api/hotel/hotel.js';
+import { obtenerMarcadores, crearMarcador } from './api/marcador/marcador.js';
 import { crearPais } from './api/pais/pais.js';
 import {obtenerReservas ,obtenerReservasPorUsuario} from './api/reserva/reserva.js'
 
@@ -45,6 +46,10 @@ app.post('/login', login); // Agregar la ruta para el inicio de sesión
 //hoteles
 app.get('/hotel', obtenerhoteles);
 app.post('/hotel', crearHotel);
+
+//marcadores
+app.get('/marcador', obtenerMarcadores);
+app.post('/marcador', crearMarcador);
 
 app.listen(PORT, () => {
   console.log(`Servidor iniciado en el puerto ${PORT}`);
