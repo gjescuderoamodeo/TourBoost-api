@@ -15,4 +15,25 @@ async function obtenerLugares(req, res) {
   }
 }
 
-export { obtenerLugares };
+// Crear un nuevo lugar
+async function crearLugar(req, res) {
+  const { latitud, longitud, tipo_lugar, nombre, nombrePais} = req.body;
+
+  try {
+    const nuevoLugar = await prisma.lugar.create({
+        data: {
+          latitud,
+          longitud,
+          tipo_lugar,
+          nombre,
+          nombrePais
+        }
+      });
+    res.json(nuevoLugar);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "No se pudo crear Lugar" });
+  }
+}
+
+export { obtenerLugares, crearLugar };
