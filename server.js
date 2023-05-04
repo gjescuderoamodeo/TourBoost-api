@@ -37,9 +37,8 @@ app.get('/reserva', obtenerReservas);
 app.get('/reserva/:idUsuario', obtenerReservasPorUsuario);
 
 //paises
-app.get('/reserva', obtenerPaises);
+app.get('/pais', obtenerPaises);
 app.post('/pais', crearPais);
-
 
 //login
 app.post('/login', login); // Agregar la ruta para el inicio de sesión
