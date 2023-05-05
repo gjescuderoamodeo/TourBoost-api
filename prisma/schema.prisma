@@ -60,7 +60,7 @@ model Lugar {
   latitud         Float
   longitud        Float
   tipo_lugar      String
-  nombre          String
+  nombre          String          @unique
   nombrePais      String
   pais            Pais            @relation(fields: [nombrePais], references: [nombre])
   hoteles         Hotel[]
