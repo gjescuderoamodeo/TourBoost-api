@@ -7,7 +7,18 @@ const prisma = instanciaSingleton;
 // Obtener todos los lugares
 async function obtenerLugares(req, res) {
   try {
-    const lugares = await prisma.lugar.findMany();
+    const lugares = await prisma.lugar.findMany(
+      {
+        select: {
+          idLugar: true,
+          latitud: true,
+          longitud: true,
+          tipo_lugar: true,
+          nombrePais: true,
+          nombre: true,
+        },
+      }
+    );
     res.json(lugares);
   } catch (error) {
     console.error(error);
@@ -17,18 +28,18 @@ async function obtenerLugares(req, res) {
 
 // Crear un nuevo lugar
 async function crearLugar(req, res) {
-  const { latitud, longitud, tipo_lugar, nombre, nombrePais} = req.body;
+  const { latitud, longitud, tipo_lugar, nombre, nombrePais } = req.body;
 
   try {
     const nuevoLugar = await prisma.lugar.create({
-        data: {
-          latitud,
-          longitud,
-          tipo_lugar,
-          nombre,
-          nombrePais
-        }
-      });
+      data: {
+        latitud,
+        longitud,
+        tipo_lugar,
+        nombre,
+        nombrePais
+      }
+    });
     res.json(nuevoLugar);
   } catch (error) {
     console.error(error);
