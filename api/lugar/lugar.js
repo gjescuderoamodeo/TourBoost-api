@@ -35,14 +35,14 @@ async function crearLugar(req, res) {
         latitud,
         longitud,
         tipo_lugar,
-        nombre:"aAAA",
+        nombre,
         nombrePais
       }
     });
     res.json(nuevoLugar);
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: error.message });
+   res.status(500).json({ error: error.message });
   }
 }
 
