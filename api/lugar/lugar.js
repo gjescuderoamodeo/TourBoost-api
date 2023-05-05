@@ -42,6 +42,7 @@ async function crearLugar(req, res) {
     res.json(nuevoLugar);
   } catch (error) {
     console.error(error);
+    res.json(error);
     res.status(500).json({ error: "No se pudo crear Lugar" });
   }
 }
