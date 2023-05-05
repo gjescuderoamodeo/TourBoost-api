@@ -20,7 +20,7 @@ async function borrarHotel(req, res) {
   const { nombre } = req.body;
 
   try {
-    const hotel = await prisma.hotel.delete({
+    const hotel = await prisma.hotel.deleteMany({
       where: {
         nombre: nombre,
       },
