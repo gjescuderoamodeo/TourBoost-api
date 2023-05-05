@@ -35,7 +35,7 @@ async function crearLugar(req, res) {
         latitud,
         longitud,
         tipo_lugar,
-        nombre,
+        nombre:"aAAA",
         nombrePais
       }
     });
