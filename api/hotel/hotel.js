@@ -14,6 +14,24 @@ async function obtenerhoteles(req, res) {
     res.status(500).json({ error: "No se pudieron obtener los hoteles" });
   }
 }
+
+//borrar un hotel
+async function borrarHotel(req, res) {
+  const { idHotel } = req.params;
+
+  try {
+    const hotel = await prisma.hotel.delete({
+      where: {
+        idHotel: idHotel,
+      },
+    });
+    res.json({ message: `El hotel con id ${idHotel} ha sido eliminado correctamente` });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: `No se pudo eliminar el hotel con id ${idHotel}` });
+  }
+}
+
   
 // Crear un nuevo hotel
 async function crearHotel(req, res) {
@@ -37,4 +55,4 @@ async function crearHotel(req, res) {
   }
 }
 
-export { obtenerhoteles, crearHotel };
+export { obtenerhoteles, crearHotel, borrarHotel };
