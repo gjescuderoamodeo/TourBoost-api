@@ -50,4 +50,4 @@ async function crearPais(req, res) {
   }
 }
 
-export { crearPais, obtenerPaises };
+export { crearPais, obtenerPaises, borrarPais };
