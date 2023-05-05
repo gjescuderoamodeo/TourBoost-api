@@ -17,18 +17,18 @@ async function obtenerhoteles(req, res) {
 
 //borrar un hotel
 async function borrarHotel(req, res) {
-  const { idHotel } = req.params;
+  const { nombre } = req.params;
 
   try {
     const hotel = await prisma.hotel.delete({
       where: {
-        idHotel: idHotel,
+        nombre: nombre,
       },
     });
-    res.json({ message: `El hotel con id ${idHotel} ha sido eliminado correctamente` });
+    res.json({ message: `El hotel con nombre ${nombre} ha sido eliminado correctamente` });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: `No se pudo eliminar el hotel con id ${idHotel}` });
+    res.status(500).json({ error: `No se pudo eliminar el hotel con nombre ${nombre}` });
   }
 }
 
