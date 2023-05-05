@@ -1,8 +1,8 @@
-import { instanciaSingleton } from "../../prisma/prisma.js";
-//const { PrismaClient } = require('@prisma/client');
+//import { instanciaSingleton } from "../../prisma/prisma.js";
+const { PrismaClient } = require('@prisma/client');
 
-//const prisma = new PrismaClient();
-const prisma = instanciaSingleton;
+const prisma = new PrismaClient();
+//const prisma = instanciaSingleton;
 
 // Obtener todos los lugares
 async function obtenerLugares(req, res) {
@@ -35,7 +35,6 @@ async function crearLugar(req, res) {
         latitud,
         longitud,
         tipo_lugar,
-        nombre,
         nombrePais
       }
     });
