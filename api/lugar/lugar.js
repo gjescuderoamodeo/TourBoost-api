@@ -8,7 +8,6 @@ const prisma = instanciaSingleton;
 async function obtenerLugares(req, res) {
   try {
     const lugares = await prisma.lugar.findMany();
-
     res.json(lugares);
   } catch (error) {
     console.error(error);

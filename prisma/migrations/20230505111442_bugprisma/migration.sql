@@ -49,9 +49,10 @@ CREATE TABLE `Lugar` (
     `latitud` DOUBLE NOT NULL,
     `longitud` DOUBLE NOT NULL,
     `tipo_lugar` VARCHAR(191) NOT NULL,
-    `nombre` VARCHAR(191) NOT NULL,
+    `nombre_lugar` VARCHAR(191) NOT NULL,
     `nombrePais` VARCHAR(191) NOT NULL,
 
+    UNIQUE INDEX `Lugar_nombre_lugar_key`(`nombre_lugar`),
     PRIMARY KEY (`idLugar`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
