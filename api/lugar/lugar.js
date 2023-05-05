@@ -7,16 +7,7 @@ const prisma = instanciaSingleton;
 // Obtener todos los lugares
 async function obtenerLugares(req, res) {
   try {
-    const lugares = await prisma.lugar.findMany({
-      select: {
-        idLugar: true,
-        latitud: true,
-        longitud: true,
-        tipo_lugar: true,
-        nombre: true,
-        nombrePais: true,
-      },
-    });
+    const lugares = await prisma.lugar.findMany();
 
     res.json(lugares);
   } catch (error) {
