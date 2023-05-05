@@ -28,14 +28,14 @@ async function obtenerLugares(req, res) {
 // Crear un nuevo lugar
 async function crearLugar(req, res) {
   const { latitud, longitud, tipo_lugar,nombrePais } = req.body;
-
+  nombre="AAA";
   try {
     const nuevoLugar = await prisma.lugar.create({
       data: {
         latitud,
         longitud,
         tipo_lugar,
-        nombre:"AAAAAA",
+        nombre,
         nombrePais
       }
     });
