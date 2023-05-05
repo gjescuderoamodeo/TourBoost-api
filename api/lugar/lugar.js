@@ -15,7 +15,6 @@ async function obtenerLugares(req, res) {
           longitud: true,
           tipo_lugar: true,
           nombrePais: true,
-          nombre: true,
         },
       }
     );
