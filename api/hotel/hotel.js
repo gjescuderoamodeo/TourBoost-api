@@ -17,7 +17,7 @@ async function obtenerhoteles(req, res) {
 
 //borrar un hotel
 async function borrarHotel(req, res) {
-  const { nombre } = req.params;
+  const { nombre } = req.body;
 
   try {
     const hotel = await prisma.hotel.delete({
