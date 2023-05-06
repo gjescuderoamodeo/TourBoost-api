@@ -35,7 +35,7 @@ model Marcador {
 
 model Hotel {
   idHotel           Int       @id @default(autoincrement())
-  nombre            String
+  nombre            String    @unique
   direccion         String
   plazasDisponibles Int
   plazasTotales     Int

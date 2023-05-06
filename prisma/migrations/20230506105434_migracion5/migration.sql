@@ -29,6 +29,7 @@ CREATE TABLE `Hotel` (
     `telefono_contacto` VARCHAR(191) NOT NULL,
     `idLugar` INTEGER NOT NULL,
 
+    UNIQUE INDEX `Hotel_nombre_key`(`nombre`),
     PRIMARY KEY (`idHotel`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
