@@ -6,8 +6,7 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js",
-    "build":"prisma db pull && prisma generate"
+    "start": "prisma generate && node server.js"
   },
   "author": "",
   "license": "ISC",
