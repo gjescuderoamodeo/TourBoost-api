@@ -17,12 +17,12 @@ async function obtenerRecomendaciones(req, res) {
 
 //obtener recomendacion por id lugar
 async function obtenerRecomendacionesLugar(req, res) {
-  const idLugar = parseInt(req.params.idLugar);
+  const nombre = req.params.nombre;
 
   try {
     const recomendaciones = await prisma.recomendacion.findMany({
       where: {
-        idLugar: idLugar
+        nombre: nombre
       }
     });
     res.json(recomendaciones);

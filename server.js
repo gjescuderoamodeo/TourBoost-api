@@ -25,11 +25,11 @@ app.post('/usuario/admin', adminCheck);
 
 //recomendaciones
 app.get('/recomendacion', obtenerRecomendaciones);
+app.get('/lugarrecomendacion/:nombre', obtenerRecomendacionesLugar);
 //app.post('/recomendacion', crearRecomendacion);
 
 //lugares
 app.get('/lugar', obtenerLugares);
-app.get('/lugaresrecomendacion/:idLugar', obtenerRecomendacionesLugar);
 app.post('/lugar', crearLugar);
 
 //reservas
