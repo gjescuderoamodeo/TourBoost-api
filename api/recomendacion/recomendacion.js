@@ -17,28 +17,33 @@ async function obtenerRecomendaciones(req, res) {
 
 //obtener recomendacion por id lugar
 async function obtenerRecomendacionesLugar(req, res) {
-  const {nombre} = req.body;
+  const { nombre } = req.body;
 
   try {
-    const lugar = await prisma.lugar.findMany({
+    const lugar = await prisma.lugar.findUnique({
       where: {
         nombre: nombre
       }
-    });  
-    
-    const recomendaciones = await prisma.recomendacion.findMany({
-      where: {
-        idLugar: await lugar.idLugar
-      }
     });
-    
-    res.json(recomendaciones);
+
+    if (lugar) {
+      const recomendaciones = await prisma.recomendacion.findMany({
+        where: {
+          idLugar: lugar.idLugar
+        }
+      });
+
+      res.json(recomendaciones);
+    } else {
+      res.status(404).json({ error: "Lugar no encontrado" });
+    }
 
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: "No hay recomendaciones" });
+    res.status(500).json({ error: "No se pudo obtener las recomendaciones" });
   }
 }
+
 
 
 
