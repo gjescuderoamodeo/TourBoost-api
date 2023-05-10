@@ -17,7 +17,7 @@ async function obtenerRecomendaciones(req, res) {
 
 //obtener recomendacion por id lugar
 async function obtenerRecomendacionesLugar(req, res) {
-  const nombre = req.body;
+  const {nombre} = req.body;
 
   try {
     const lugar = await prisma.lugar.findMany({
