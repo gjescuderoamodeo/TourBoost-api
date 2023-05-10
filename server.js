@@ -25,7 +25,7 @@ app.post('/usuario/admin', adminCheck);
 
 //recomendaciones
 app.get('/recomendacion', obtenerRecomendaciones);
-app.get('/lugarrecomendacion/:nombre', obtenerRecomendacionesLugar);
+app.post('/lugarrecomendacion', obtenerRecomendacionesLugar);
 //app.post('/recomendacion', crearRecomendacion);
 
 //lugares
