@@ -26,7 +26,13 @@ async function obtenerRecomendacionesLugar(req, res) {
       }
     });  
     
-    res.json(lugar);
+    const recomendaciones = await prisma.recomendacion.findMany({
+      where: {
+        idLugar: lugar.idLugar
+      }
+    });
+    
+    res.json(recomendaciones);
 
   } catch (error) {
     console.error(error);
