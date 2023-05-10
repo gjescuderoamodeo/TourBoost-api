@@ -38,20 +38,6 @@ async function obtenerRecomendacionesLugar(req, res) {
     console.error(error);
     res.status(500).json({ error: "No hay recomendaciones" });
   }
-
-
-
-  try {
-    const recomendaciones = await prisma.recomendacion.findMany({
-      where: {
-        nombre: nombre
-      }
-    });
-    res.json(recomendaciones);
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: "No hay recomendaciones" });
-  }
 }
 
 
