@@ -15,6 +15,23 @@ async function obtenerhoteles(req, res) {
   }
 }
 
+// Obtener hotel por id hotel
+async function obtenerhotelesid(req, res) {
+  const { idHotel } = req.params;
+
+  try {
+    const hotel = await prisma.hotel.findUnique({
+      where: {
+        idHotel: idHotel
+      }
+    });
+    res.json(hotel);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "No se pudieron obtener los hoteles" });
+  }
+}
+
 //borrar un hotel
 async function borrarHotel(req, res) {
   const { nombre } = req.body;
@@ -55,4 +72,4 @@ async function crearHotel(req, res) {
   }
 }
 
-export { obtenerhoteles, crearHotel, borrarHotel };
+export { obtenerhoteles, crearHotel, borrarHotel, obtenerhotelesid };
