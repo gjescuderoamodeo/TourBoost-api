@@ -28,7 +28,7 @@ async function obtenerhotelesid(req, res) {
     res.json(hotel);
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: "No se pudieron obtener los hoteles" });
+    res.status(500).json(error);
   }
 }
 
