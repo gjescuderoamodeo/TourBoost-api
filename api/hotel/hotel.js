@@ -22,13 +22,13 @@ async function obtenerhotelesid(req, res) {
   try {
     const hotel = await prisma.hotel.findUnique({
       where: {
-        idHotel: 1
+        idHotel: idHotel
       }
     });
     res.json(hotel);
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: "No se pudo obtener el hotel" });
+    res.status(500).json({ error: idHotel });
   }
 }
 
