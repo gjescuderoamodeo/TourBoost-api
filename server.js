@@ -48,7 +48,7 @@ app.post('/login', login); // Agregar la ruta para el inicio de sesión
 app.get('/hotel', obtenerhoteles);
 app.post('/hotel', crearHotel);
 app.delete('/hotel', borrarHotel);
-app.get('/reserva/:idHotel', obtenerhotelesid);
+app.get('/hotel/:idHotel', obtenerhotelesid);
 
 //marcadores
 app.get('/marcador', obtenerMarcadores);
