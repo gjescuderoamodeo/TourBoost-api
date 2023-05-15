@@ -50,7 +50,7 @@ app.get('/hotel', obtenerhoteles);
 app.post('/hotel', crearHotel);
 app.delete('/hotel', borrarHotel);
 app.get('/hotel/:idHotel', obtenerhotelesid);
-app.get('/hotel/:nombrePais', obtenerhotelespais);
+app.get('/hotelpais/:nombrePais', obtenerhotelespais);
 
 //marcadores
 app.get('/marcador', obtenerMarcadores);
