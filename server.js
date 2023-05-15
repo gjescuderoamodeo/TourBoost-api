@@ -21,7 +21,7 @@ app.use(express.json());
 //usuarios
 app.get('/usuario',autenticar, obtenerUsuarios);
 app.post('/usuario', crearUsuario);
-app.post('/usuarioget', obtenerUsuario);
+app.get('/usuario/:idUsuario', obtenerUsuario);
 app.post('/usuario/admin', adminCheck);
 
 //recomendaciones

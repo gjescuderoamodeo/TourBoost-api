@@ -23,11 +23,11 @@ async function obtenerUsuarios(req, res) {
 
 // Obtener un usuario
 async function obtenerUsuario(req, res) {
-  const {idUsuario} = req.body;
+  const {idUsuario} = req.params;
 
   try {
     const usuario = await prisma.usuario.findFirst({
-      where:{idUsuario:idUsuario}
+      where:{idUsuario:parseInt(idUsuario)}
     });
     res.json(usuario);
   } catch (error) {
