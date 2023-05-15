@@ -21,6 +21,20 @@ async function obtenerUsuarios(req, res) {
   }
 }
 
+// Obtener un usuario
+async function obtenerUsuario(req, res) {
+  const {correo} = req.body;
+
+  try {
+    const usuario = await prisma.usuario.findFirst({
+      where:{correo:correo}
+    });
+    res.json(usuario);
+  } catch (error) {
+    res.status(500).json({ error: "No se pudo obtener un usuario" });
+  }
+}
+
 // Comprobar si es admin
 async function adminCheck(req, res) {
   const {correo} = req.body;
