@@ -23,11 +23,11 @@ async function obtenerUsuarios(req, res) {
 
 // Obtener un usuario
 async function obtenerUsuario(req, res) {
-  const {correo} = req.body;
+  const {idUsuario} = req.body;
 
   try {
     const usuario = await prisma.usuario.findFirst({
-      where:{correo:correo}
+      where:{idUsuario:idUsuario}
     });
     res.json(usuario);
   } catch (error) {
