@@ -15,6 +15,30 @@ async function obtenerhoteles(req, res) {
   }
 }
 
+// Obtener todos las hoteles de un pais
+async function obtenerhotelespais(req, res) {
+  const { nombrePais } = req.params;
+
+  try {
+    const lugar = await prisma.lugar.findUnique({
+      where: {
+        nombrePais:nombrePais
+      }
+    });
+
+    const hoteles = await prisma.hotel.findMany({
+      where: {
+        idLugar: lugar.idLugar
+      }
+    });
+
+    res.json(hoteles);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "No se pudo obtener los hoteles de ese pais" });
+  }
+}
+
 // Obtener hotel por id hotel
 async function obtenerhotelesid(req, res) {
   const { idHotel } = req.params;
@@ -72,4 +96,4 @@ async function crearHotel(req, res) {
   }
 }
 
-export { obtenerhoteles, crearHotel, borrarHotel, obtenerhotelesid };
+export { obtenerhoteles, crearHotel, borrarHotel, obtenerhotelesid, obtenerhotelespais };

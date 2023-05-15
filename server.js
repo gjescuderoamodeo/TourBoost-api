@@ -4,7 +4,7 @@ import { crearRecomendaciones ,obtenerRecomendaciones, obtenerRecomendacionesLug
 import { instanciaSingleton } from './prisma/prisma.js';
 import dotenv from 'dotenv';
 import { obtenerLugares, crearLugar } from './api/lugar/lugar.js';
-import { obtenerhoteles, crearHotel, borrarHotel, obtenerhotelesid } from './api/hotel/hotel.js';
+import { obtenerhoteles, crearHotel, borrarHotel, obtenerhotelesid, obtenerhotelespais } from './api/hotel/hotel.js';
 import { obtenerMarcadores, crearMarcador } from './api/marcador/marcador.js';
 import { crearPais, obtenerPaises, borrarPais } from './api/pais/pais.js';
 import {obtenerReservas ,obtenerReservasPorUsuario} from './api/reserva/reserva.js'
@@ -50,6 +50,7 @@ app.get('/hotel', obtenerhoteles);
 app.post('/hotel', crearHotel);
 app.delete('/hotel', borrarHotel);
 app.get('/hotel/:idHotel', obtenerhotelesid);
+app.get('/hotel/:nombrePais', obtenerhotelespais);
 
 //marcadores
 app.get('/marcador', obtenerMarcadores);
