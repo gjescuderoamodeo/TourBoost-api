@@ -26,13 +26,18 @@ async function obtenerhotelespais(req, res) {
       }
     });
 
-    const hoteles = await prisma.hotel.findMany({
-      where: {
-        idLugar: lugar.idLugar
-      }
-    });
-
-    res.json(hoteles);
+    if (lugar) {
+      const hoteles = await prisma.hotel.findMany({
+        where: {
+          idLugar: lugar.idLugar
+        }
+      });
+  
+      res.json(hoteles);
+    } else {
+      res.status(404).json({ error: "Lugar no encontrado" });
+    }
+    
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "No se pudo obtener los hoteles de ese pais" });
