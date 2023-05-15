@@ -142,4 +142,4 @@ function autenticar(req, res, next) {
   }
 }
 
-export { obtenerUsuarios, crearUsuario, login, autenticar, adminCheck };
+export { obtenerUsuarios, crearUsuario, login, autenticar, adminCheck, obtenerUsuario };
