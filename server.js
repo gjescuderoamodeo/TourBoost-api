@@ -22,7 +22,7 @@ app.use(express.json());
 app.get('/usuario',autenticar, obtenerUsuarios);
 app.post('/usuario', crearUsuario);
 app.get('/usuario/:idUsuario', obtenerUsuario);
-app.post('/usuario/admin', adminCheck);
+app.post('/usuario/admin',autenticar, adminCheck);
 
 //recomendaciones
 app.get('/recomendacion', obtenerRecomendaciones);
