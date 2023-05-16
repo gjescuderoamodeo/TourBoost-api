@@ -63,11 +63,11 @@ async function actualizarUsuario(req, res) {
         correo: newUser.correo,
         admin: newUser.admin,
       },});
-      
+
     res.json(usuarioNew);
 
   } catch (error) {
-    res.status(500).json({ error: "No se pudo modificar el usuario" });
+    res.status(500).json({ error: "No se pudo modificar el usuario" , errorMessage: error.message, originalError: error });
   }
 }
 
