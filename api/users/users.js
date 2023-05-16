@@ -68,7 +68,7 @@ async function actualizarUsuario(req, res) {
       res.json(usuarioNew);
       }
     else {
-      res.status(404).json({ error: "usuario no encontrado" });
+      res.status(404).json({ error: "usuario no encontrado" + idUsuario });
     }
 
   } catch (error) {
