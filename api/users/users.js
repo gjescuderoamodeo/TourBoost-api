@@ -34,7 +34,7 @@ async function actualizarUsuario(req, res) {
   //
   try {
     const usuario = await prisma.usuario.findFirst({
-      where:{idUsuario:idUsuario}
+      where:{idUsuario:parseInt(idUsuario)}
     });
     
     //si nombre vacio
