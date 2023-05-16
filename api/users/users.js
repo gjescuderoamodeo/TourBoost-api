@@ -14,7 +14,13 @@ function generarToken(usuario) {
 // Obtener todos los usuarios
 async function obtenerUsuarios(req, res) {
   try {
-    const usuarios = await prisma.usuario.findMany();
+    const usuarios = await prisma.usuario.findMany(
+      {select: {
+      idUsuario: true,
+      nombre: true,
+      apellidos: true,
+      correo: true
+    }});
     res.json(usuarios);
   } catch (error) {
     res.status(500).json({ error: "No se pudieron obtener los usuarios" });
