@@ -27,6 +27,50 @@ async function obtenerUsuarios(req, res) {
   }
 }
 
+//actualizar usuarios
+async function actualizarUsuario(req, res) {
+  const {idUsuario, nombre, apellidos, password, correo} = req.body;
+
+  //
+  try {
+    const usuario = await prisma.usuario.findFirst({
+      where:{idUsuario:parseInt(idUsuario)}
+    });
+    
+    //si nombre vacio
+    newUser = usuario;
+    if(nombre!=""){
+      newUser.nombre=nombre;
+    }
+    if(apellidos!=""){
+      newUser.apellidos=apellidos;
+    }
+    if(password!=""){
+      // Hash de la contraseña
+      const hashPassword = await bcrypt.hash(password, salt);
+      newUser.password=hashPassword;
+    }
+    if(correo!=""){
+      newUser.correo=correo;
+    }
+
+    const usuarioNew = await prisma.usuario.updateMany(      
+      {where:{idUsuario:parseInt(idUsuario)},
+      data: {
+        nombre: newUser.nombre,
+        apellidos: newUser.apellidos,
+        password: newUser.password,
+        correo: newUser.correo,
+        admin: newUser.admin,
+      },});
+      
+    res.json(usuarioNew);
+
+  } catch (error) {
+    res.status(500).json({ error: "No se pudo modificar el usuario" });
+  }
+}
+
 // Obtener un usuario
 async function obtenerUsuario(req, res) {
   const {idUsuario} = req.params;
@@ -154,4 +198,4 @@ function autenticar(req, res, next) {
   }
 }
 
-export { obtenerUsuarios, crearUsuario, login, autenticar, adminCheck, obtenerUsuario };
+export { obtenerUsuarios, crearUsuario, login, autenticar, adminCheck, obtenerUsuario, actualizarUsuario };
