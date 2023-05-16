@@ -38,36 +38,41 @@ async function actualizarUsuario(req, res) {
     });
     
     //si nombre vacio
-    newUser = usuario;
-    if(nombre!=""){
-      newUser.nombre=nombre;
-    }
-    if(apellidos!=""){
-      newUser.apellidos=apellidos;
-    }
-    if(password!=""){
-      // Hash de la contraseña
-      const hashPassword = await bcrypt.hash(password, salt);
-      newUser.password=hashPassword;
-    }
-    if(correo!=""){
-      newUser.correo=correo;
-    }
+    if (usuario.length > 0) {
+      newUser = usuario;
+      if(nombre!=""){
+        newUser.nombre=nombre;
+      }
+      if(apellidos!=""){
+        newUser.apellidos=apellidos;
+      }
+      if(password!=""){
+        // Hash de la contraseña
+        const hashPassword = await bcrypt.hash(password, salt);
+        newUser.password=hashPassword;
+      }
+      if(correo!=""){
+        newUser.correo=correo;
+      }
 
-    const usuarioNew = await prisma.usuario.updateMany(      
-      {where:{idUsuario:parseInt(idUsuario)},
-      data: {
-        nombre: newUser.nombre,
-        apellidos: newUser.apellidos,
-        password: newUser.password,
-        correo: newUser.correo,
-        admin: newUser.admin,
-      },});
+      const usuarioNew = await prisma.usuario.updateMany(      
+        {where:{idUsuario:parseInt(idUsuario)},
+        data: {
+          nombre: newUser.nombre,
+          apellidos: newUser.apellidos,
+          password: newUser.password,
+          correo: newUser.correo,
+          admin: newUser.admin,
+        },});
 
-    res.json(usuarioNew);
+      res.json(usuarioNew);
+      }
+    else {
+      res.status(404).json({ error: "usuario no encontrado" });
+    }
 
   } catch (error) {
-    res.status(500).json({ error: "No se pudo modificar el usuario" , errorMessage: error.message, originalError: error });
+    res.status(500).json({ error: "No se pudo modificar el usuario" , errorMessage: error.message});
   }
 }
 
