@@ -20,7 +20,7 @@ async function obtenerhotelespais(req, res) {
   const { nombrePais } = req.params;
 
   try {
-    const lugar = await prisma.lugar.findMany({
+    const lugares = await prisma.lugar.findMany({
       where: {
         nombrePais:nombrePais
       }
