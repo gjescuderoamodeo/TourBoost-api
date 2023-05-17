@@ -15,6 +15,27 @@ async function obtenerReservas(req, res) {
   }
 }
 
+// Crear un nuevo pais
+async function crearReserva(req, res) {
+  const { fecha_inicio, fecha_fin, idUsuario, idHotel } = req.body;
+
+  try {
+    const nuevaReserva = await prisma.reserva.create({
+        data: {
+          fecha_inicio,
+          fecha_fin,
+          idUsuario,
+          idHotel
+        }
+      });
+    res.json(nuevaReserva);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "No se pudo crear Reserva" });
+  }
+}
+
+
 //obtener reservas de un usuario
 async function obtenerReservasPorUsuario(req, res) {
     try {
@@ -32,4 +53,4 @@ async function obtenerReservasPorUsuario(req, res) {
   }
   
 
-export { obtenerReservas, obtenerReservasPorUsuario };
+export { obtenerReservas, obtenerReservasPorUsuario, crearReserva };

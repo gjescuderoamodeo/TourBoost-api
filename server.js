@@ -7,7 +7,7 @@ import { obtenerLugares, crearLugar } from './api/lugar/lugar.js';
 import { obtenerhoteles, crearHotel, borrarHotel, obtenerhotelesid, obtenerhotelespais } from './api/hotel/hotel.js';
 import { obtenerMarcadores, crearMarcador } from './api/marcador/marcador.js';
 import { crearPais, obtenerPaises, borrarPais } from './api/pais/pais.js';
-import {obtenerReservas ,obtenerReservasPorUsuario} from './api/reserva/reserva.js'
+import {obtenerReservas ,obtenerReservasPorUsuario, crearReserva} from './api/reserva/reserva.js'
 
 dotenv.config();
 
@@ -37,6 +37,7 @@ app.post('/lugar', crearLugar);
 //reservas
 app.get('/reserva', obtenerReservas);
 app.get('/reserva/:idUsuario', obtenerReservasPorUsuario);
+app.post('/reserva', crearReserva);
 
 //paises
 app.get('/pais', obtenerPaises);
