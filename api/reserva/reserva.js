@@ -15,7 +15,7 @@ async function obtenerReservas(req, res) {
   }
 }
 
-// Crear un nuevo pais
+// Crear una nueva reserva
 async function crearReserva(req, res) {
   const { fecha_inicio, fecha_fin, idUsuario, idHotel, numeroReservantes } = req.body;
 
@@ -43,7 +43,7 @@ async function crearReserva(req, res) {
     res.json(nuevaReserva);
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: "No se pudo crear Reserva" });
+    res.status(500).json({ error: "No se pudo crear Reserva", errorMessage: error.message });
   }
 }
 
