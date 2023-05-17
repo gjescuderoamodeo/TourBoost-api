@@ -17,7 +17,7 @@ async function obtenerReservas(req, res) {
 
 // Crear un nuevo pais
 async function crearReserva(req, res) {
-  const { fecha_inicio, fecha_fin, idUsuario, idHotel } = req.body;
+  const { fecha_inicio, fecha_fin, idUsuario, idHotel, numeroReservantes } = req.body;
 
   try {
     const nuevaReserva = await prisma.reserva.create({
@@ -28,6 +28,18 @@ async function crearReserva(req, res) {
           idHotel
         }
       });
+
+    const quitarplazasDisponibles = await prisma.hotel.update({
+      where: {
+        idHotel: idHotel
+      },
+      data: {
+        plazasDisponibles: {
+          decrement: numeroReservantes
+        }
+      }
+    });        
+
     res.json(nuevaReserva);
   } catch (error) {
     console.error(error);
