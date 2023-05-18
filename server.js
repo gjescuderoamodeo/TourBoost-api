@@ -23,7 +23,7 @@ app.get('/usuario',autenticar, obtenerUsuarios);
 app.put('/usuario', actualizarUsuario);
 app.post('/usuario', crearUsuario);
 app.get('/usuario/:idUsuario', obtenerUsuario);
-app.post('/usuario/admin',autenticar, adminCheck);
+app.post('/usuario/admin', adminCheck);
 
 //recomendaciones
 app.get('/recomendacion', obtenerRecomendaciones);
