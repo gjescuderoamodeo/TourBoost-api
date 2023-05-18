@@ -104,4 +104,26 @@ async function crearHotel(req, res) {
   }
 }
 
-export { obtenerhoteles, crearHotel, borrarHotel, obtenerhotelesid, obtenerhotelespais };
+// modificar un hotel
+async function modificarHotel(req, res) {
+  const { nombre, direccion, plazasDisponibles, plazasTotales, telefono_contacto,idLugar } = req.body;
+
+  try {
+    const nuevoHotel = await prisma.hotel.update({
+        data: {
+          nombre,
+          direccion,
+          plazasDisponibles,
+          plazasTotales,
+          telefono_contacto,
+          idLugar
+        }
+      });
+    res.json(nuevoHotel);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "No se pudo modificar el Hotel" });
+  }
+}
+
+export { obtenerhoteles, crearHotel, borrarHotel, obtenerhotelesid, obtenerhotelespais, modificarHotel };
