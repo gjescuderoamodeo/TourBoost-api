@@ -60,7 +60,7 @@ app.get('/hotelpais/:nombrePais', obtenerhotelespais);
 app.get('/marcador', obtenerMarcadores);
 app.get('/marcador/:idUsuario', obtenerMarcadoresidUser);
 app.post('/marcador', crearMarcador);
-app.delete('/marcador', borrarMarcador);
+app.delete('/marcador/:idLugar', borrarMarcador);
 
 app.listen(PORT, () => {
   console.log(`Servidor iniciado en el puerto ${PORT}`);
