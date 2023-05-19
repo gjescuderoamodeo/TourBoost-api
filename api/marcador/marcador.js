@@ -31,6 +31,24 @@ async function obtenerMarcadoresidUser(req, res) {
     res.status(500).json({ error: "No se pudieron obtener los marcadores", errorMessage: error.message });
   }
 }
+
+// Obtener todos las marcadores por id usuario
+async function borrarMarcador(req, res) {
+  const { idLugar } = req.params;
+
+  try {
+    const marcadoresUserdelete = await prisma.marcador.delete({
+        where: {
+          idLugar:parseInt(idLugar)
+        }
+      });
+
+    res.json(marcadoresUserdelete);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "No se pudo borrar el marcador", errorMessage: error.message });
+  }
+}
   
 // Crear un nuevo marcador
 async function crearMarcador(req, res) {
@@ -50,4 +68,4 @@ async function crearMarcador(req, res) {
   }
 }
 
-export { obtenerMarcadores, crearMarcador, obtenerMarcadoresidUser };
+export { obtenerMarcadores, crearMarcador, obtenerMarcadoresidUser, borrarMarcador };
