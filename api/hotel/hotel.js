@@ -106,10 +106,13 @@ async function crearHotel(req, res) {
 
 // modificar un hotel
 async function modificarHotel(req, res) {
-  const { nombre, direccion, plazasDisponibles, plazasTotales, telefono_contacto,idLugar } = req.body;
+  const { idHotel, nombre, direccion, plazasDisponibles, plazasTotales, telefono_contacto, idLugar } = req.body;
 
   try {
     const nuevoHotel = await prisma.hotel.update({
+        where:{
+          idHotel:idHotel
+        },
         data: {
           nombre,
           direccion,
