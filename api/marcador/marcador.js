@@ -39,8 +39,8 @@ async function borrarMarcador(req, res) {
   try {
     const marcadoresUserdelete = await prisma.marcador.delete({
         where: {
-          idLugar:parseInt(idLugar),
-          idUsuario:parseInt(idUsuario),
+          idLugar:idLugar,
+          idUsuario:idUsuario,
         }
       });
 
