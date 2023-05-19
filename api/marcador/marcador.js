@@ -15,7 +15,7 @@ async function obtenerMarcadores(req, res) {
   }
 }
 
-// Obtener todos las marcadores
+// Obtener todos las marcadores por id usuario
 async function obtenerMarcadoresidUser(req, res) {
   const { idUsuario } = req.params;
 
