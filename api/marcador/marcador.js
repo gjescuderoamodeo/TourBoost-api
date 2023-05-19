@@ -22,7 +22,7 @@ async function obtenerMarcadoresidUser(req, res) {
   try {
     const marcadoresUser = await prisma.marcador.findMany({
         where: {
-            idUsuario:idUsuario
+            idUsuario:parseInt(idUsuario)
         }
       });
     res.json(marcadoresUser);
