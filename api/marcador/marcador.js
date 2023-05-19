@@ -44,7 +44,7 @@ async function borrarMarcador(req, res) {
         }
       });
 
-    res.json(marcadoresUserdelete);
+      res.json({ message: `El hotel con nombre ${nombre} ha sido eliminado correctamente` });
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "No se pudo borrar el marcador", errorMessage: error.message });
