@@ -28,7 +28,7 @@ async function obtenerMarcadoresidUser(req, res) {
     res.json(marcadoresUser);
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: "No se pudieron obtener los marcadores" });
+    res.status(500).json({ error: "No se pudieron obtener los marcadores", errorMessage: error.message });
   }
 }
   
