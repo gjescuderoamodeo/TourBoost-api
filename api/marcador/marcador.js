@@ -34,12 +34,13 @@ async function obtenerMarcadoresidUser(req, res) {
 
 // Obtener todos las marcadores por id usuario
 async function borrarMarcador(req, res) {
-  const { idLugar } = req.params;
+  const { idLugar, idUsuario } = req.body;
 
   try {
     const marcadoresUserdelete = await prisma.marcador.delete({
         where: {
-          idLugar:parseInt(idLugar)
+          idLugar:parseInt(idLugar),
+          idUsuario:parseInt(idUsuario),
         }
       });
 
