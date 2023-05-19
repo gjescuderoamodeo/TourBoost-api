@@ -15,6 +15,23 @@ async function obtenerLugares(req, res) {
   }
 }
 
+// Obtener lugar por id
+async function obtenerLugaridLugar(req, res) {
+  const { idLugar } = req.params;
+
+  try {
+    const lugar = await prisma.lugar.findUnique({
+      where: {
+        idLugar: parseInt(idLugar)
+      }
+    });
+    res.json(lugar);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "No se pudieron obtener los lugares con ese id", errorMessage: error.message });
+  }
+}
+
 // Crear un nuevo lugar
 async function crearLugar(req, res) {
   const { latitud, longitud, tipo_lugar, nombre, nombrePais } = req.body;
@@ -37,4 +54,4 @@ async function crearLugar(req, res) {
 }
 
 
-export { obtenerLugares, crearLugar };
+export { obtenerLugares, crearLugar, obtenerLugaridLugar };
