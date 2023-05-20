@@ -81,7 +81,7 @@ async function isMarcador(req, res) {
         }
       });
     if(isMarcador.length > 0){        
-      res.json(isMarcador);
+      res.json(true);
     } else{
       res.json(false);
     }
