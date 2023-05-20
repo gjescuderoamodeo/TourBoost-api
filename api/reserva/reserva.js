@@ -17,7 +17,7 @@ async function obtenerReservas(req, res) {
 
 // Crear una nueva reserva
 async function crearReserva(req, res) {
-  const { fecha_inicio, fecha_fin, idUsuario, idHotel, numeroReservantes, numeroPersonas } = req.body;
+  const { fecha_inicio, fecha_fin, idUsuario, idHotel, numeroPersonas } = req.body;
 
   // Convertir fechas a objetos DateTime
   const fechaInicio = new Date(fecha_inicio);
