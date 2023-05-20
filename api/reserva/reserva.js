@@ -17,11 +17,13 @@ async function obtenerReservas(req, res) {
 
 // Crear una nueva reserva
 async function crearReserva(req, res) {
-  const { fecha_inicio, fecha_fin, idUsuario, idHotel, numeroReservantes } = req.body;
+  const { fecha_inicio, fecha_fin, idUsuario, idHotel, numeroReservantes, numeroPersonas } = req.body;
 
   // Convertir fechas a objetos DateTime
   const fechaInicio = new Date(fecha_inicio);
   const fechaFin = new Date(fecha_fin);
+
+  expirado = false;
 
   try {
     const nuevaReserva = await prisma.reserva.create({
@@ -29,7 +31,9 @@ async function crearReserva(req, res) {
           fecha_inicio: fechaInicio,
           fecha_fin: fechaFin,
           idUsuario,
-          idHotel
+          idHotel,
+          numeroPersonas,
+          expirado
         }
       });
 
