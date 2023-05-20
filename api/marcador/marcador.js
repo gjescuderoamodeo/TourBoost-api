@@ -74,14 +74,14 @@ async function isMarcador(req, res) {
   const { idUsuario, idLugar} = req.body;
 
   try {
-    const nuevoMarcador = await prisma.marcador.findMany({
+    const isMarcador = await prisma.marcador.findMany({
         where: {
             idUsuario:idUsuario,
             idLugar:idLugar
         }
       });
-    if(nuevoMarcador.length > 0){        
-      res.json(true);
+    if(isMarcador.length > 0){        
+      res.json(isMarcador);
     } else{
       res.json(false);
     }
