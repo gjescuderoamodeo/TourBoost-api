@@ -69,4 +69,26 @@ async function crearMarcador(req, res) {
   }
 }
 
-export { obtenerMarcadores, crearMarcador, obtenerMarcadoresidUser, borrarMarcador };
+// Devolver si marcador en favoritos marcador
+async function isMarcador(req, res) {
+  const { idUsuario, idLugar} = req.body;
+
+  try {
+    const nuevoMarcador = await prisma.marcador.findMany({
+        where: {
+            idUsuario:idUsuario,
+            idLugar:idLugar
+        }
+      });
+    if(nuevoMarcador){        
+      res.json(true);
+    } else{
+      res.json(false);
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Error" });
+  }
+}
+
+export { obtenerMarcadores, crearMarcador, obtenerMarcadoresidUser, borrarMarcador, isMarcador };
