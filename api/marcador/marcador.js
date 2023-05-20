@@ -80,7 +80,7 @@ async function isMarcador(req, res) {
             idLugar:idLugar
         }
       });
-    if(nuevoMarcador){        
+    if(nuevoMarcador.length > 0){        
       res.json(true);
     } else{
       res.json(false);
