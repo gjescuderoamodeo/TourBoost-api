@@ -81,9 +81,9 @@ async function isMarcador(req, res) {
         }
       });
     if(isMarcador.length > 0){        
-      res.json(true);
+      res.status(201);
     } else{
-      res.json(false);
+      res.status(202);
     }
   } catch (error) {
     console.error(error);
