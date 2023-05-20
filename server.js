@@ -58,7 +58,7 @@ app.get('/hotelpais/:nombrePais', obtenerhotelespais);
 
 //marcadores
 app.get('/marcador', obtenerMarcadores);
-app.get('/marcadoris', isMarcador);
+app.post('/marcadoris', isMarcador);
 app.get('/marcador/:idUsuario', obtenerMarcadoresidUser);
 app.post('/marcador', crearMarcador);
 app.delete('/marcador', borrarMarcador);
