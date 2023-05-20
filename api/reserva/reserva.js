@@ -41,7 +41,7 @@ async function crearReserva(req, res) {
       },
       data: {
         plazasDisponibles: {
-          decrement: numeroReservantes
+          decrement: numeroPersonas
         }
       }
     });        
