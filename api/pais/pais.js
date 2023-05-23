@@ -34,7 +34,7 @@ async function borrarPais(req, res) {
 
 // Crear un nuevo pais
 async function crearPais(req, res) {
-  const { codigo_pais, nombre} = req.body;
+  const { codigo_pais, nombre } = req.body;
 
   try {
     const nuevoPais = await prisma.pais.create({
@@ -50,4 +50,25 @@ async function crearPais(req, res) {
   }
 }
 
-export { crearPais, obtenerPaises, borrarPais };
+// modificar un hotel
+async function modificarPais(req, res) {
+  const { codigo_pais, nombre } = req.body;
+
+  try {
+    const nuevoHotel = await prisma.pais.update({
+        where:{
+          codigo_pais:codigo_pais
+        },
+        data: {
+          codigo_pais,
+          nombre,
+        }
+      });
+    res.json(nuevoHotel);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "No se pudo modificar el Pais" });
+  }
+}
+
+export { crearPais, obtenerPaises, borrarPais, modificarPais };
