@@ -52,22 +52,22 @@ async function crearPais(req, res) {
 
 // modificar un hotel
 async function modificarPais(req, res) {
-  const { codigo_pais, nombre } = req.body;
+  const { codigo_pais,nombre_nuevo, nombre } = req.body;
 
   try {
-    const nuevoHotel = await prisma.pais.update({
+    const nuevoPais = await prisma.pais.update({
         where:{
-          codigo_pais:codigo_pais
+          nombre:nombre
         },
         data: {
           codigo_pais,
-          nombre,
+          nombre_nuevo,
         }
       });
-    res.json(nuevoHotel);
+    res.json(nuevoPais);
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: "No se pudo modificar el Pais" });
+    res.status(500).json({ error: "No se pudo modificar el Pais" , errorMessage: error.message });
   }
 }
 
