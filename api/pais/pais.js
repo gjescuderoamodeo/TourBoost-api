@@ -61,7 +61,7 @@ async function modificarPais(req, res) {
         },
         data: {
           codigo_pais,
-          nombre_nuevo,
+          nombre:nombre_nuevo,
         }
       });
     res.json(nuevoPais);
