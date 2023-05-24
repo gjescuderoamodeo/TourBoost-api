@@ -53,5 +53,23 @@ async function crearLugar(req, res) {
   }
 }
 
+//
+async function borrarLugar(req, res) {
+  const { idLugar} = req.body;
 
-export { obtenerLugares, crearLugar, obtenerLugaridLugar };
+  try {
+    const Lugardelete = await prisma.lugar.deleteMany({
+        where: {
+          idLugar:idLugar,
+        }
+      });
+
+      res.json({ message: `El lugar ha sido eliminado correctamente` });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "No se pudo borrar el lugar", errorMessage: error.message });
+  }
+}
+
+
+export { obtenerLugares, crearLugar, obtenerLugaridLugar, borrarLugar };
