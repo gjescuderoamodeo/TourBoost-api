@@ -32,7 +32,7 @@ async function obtenerMarcadoresidUser(req, res) {
   }
 }
 
-// Obtener todos las marcadores por id usuario
+//
 async function borrarMarcador(req, res) {
   const { idLugar, idUsuario } = req.body;
 
