@@ -71,5 +71,29 @@ async function borrarLugar(req, res) {
   }
 }
 
+// modificar un lugar
+async function modificarLugar(req, res) {
+  const { latitud, longitud, tipo_lugar, nombre, nombrePais, idLugar } = req.body;
 
-export { obtenerLugares, crearLugar, obtenerLugaridLugar, borrarLugar };
+  try {
+    const nuevoLugar = await prisma.lugar.update({
+        where:{
+          idLugar:idLugar
+        },
+        data: {
+          latitud,
+          longitud,
+          tipo_lugar,
+          nombre,
+          nombrePais,
+        }
+      });
+    res.json(nuevoLugar);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "No se pudo modificar el Lugar" });
+  }
+}
+
+
+export { obtenerLugares, crearLugar, obtenerLugaridLugar, borrarLugar, modificarLugar };

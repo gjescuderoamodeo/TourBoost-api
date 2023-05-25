@@ -3,7 +3,7 @@ import { obtenerUsuarios, adminCheck, crearUsuario, login, autenticar, obtenerUs
 import { crearRecomendaciones ,obtenerRecomendaciones, obtenerRecomendacionesLugar } from './api/recomendacion/recomendacion.js';
 import { instanciaSingleton } from './prisma/prisma.js';
 import dotenv from 'dotenv';
-import { obtenerLugares, crearLugar, obtenerLugaridLugar, borrarLugar } from './api/lugar/lugar.js';
+import { obtenerLugares, crearLugar, obtenerLugaridLugar, borrarLugar, modificarLugar } from './api/lugar/lugar.js';
 import { obtenerhoteles, crearHotel, borrarHotel, obtenerhotelesid, obtenerhotelespais, modificarHotel } from './api/hotel/hotel.js';
 import { obtenerMarcadores, crearMarcador, obtenerMarcadoresidUser, borrarMarcador, isMarcador } from './api/marcador/marcador.js';
 import { crearPais, obtenerPaises, borrarPais, modificarPais } from './api/pais/pais.js';
@@ -35,6 +35,7 @@ app.get('/lugar', obtenerLugares);
 app.get('/lugar/:idLugar', obtenerLugaridLugar);
 app.post('/lugar', crearLugar);
 app.delete('/lugar', borrarLugar);
+app.put('/lugar', modificarLugar);
 
 //reservas
 app.get('/reserva', obtenerReservas);
