@@ -91,4 +91,22 @@ async function modificarRecomendacion(req, res) {
   }
 }
 
-export { obtenerRecomendaciones, crearRecomendaciones, obtenerRecomendacionesLugar, modificarRecomendacion };
+//
+async function borrarRecomendacion(req, res) {
+  const { idRecomendacion } = req.body;
+
+  try {
+    const recomendacionDelete = await prisma.recomendacion.deleteMany({
+        where: {
+          idRecomendacion:idRecomendacion,
+        }
+      });
+
+      res.json({ message: `La recomendacion ha sido eliminado correctamente` });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "No se pudo borrar la recomendacion", errorMessage: error.message });
+  }
+}
+
+export { obtenerRecomendaciones, crearRecomendaciones, obtenerRecomendacionesLugar, modificarRecomendacion, borrarRecomendacion };
