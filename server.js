@@ -1,6 +1,6 @@
 import express from 'express';
 import { obtenerUsuarios, adminCheck, crearUsuario, login, autenticar, obtenerUsuario, actualizarUsuario } from './api/users/users.js';
-import { crearRecomendaciones ,obtenerRecomendaciones, obtenerRecomendacionesLugar } from './api/recomendacion/recomendacion.js';
+import { crearRecomendaciones ,obtenerRecomendaciones, obtenerRecomendacionesLugar, modificarRecomendacion } from './api/recomendacion/recomendacion.js';
 import { instanciaSingleton } from './prisma/prisma.js';
 import dotenv from 'dotenv';
 import { obtenerLugares, crearLugar, obtenerLugaridLugar, borrarLugar, modificarLugar } from './api/lugar/lugar.js';
@@ -28,7 +28,8 @@ app.post('/usuario/admin', adminCheck);
 //recomendaciones
 app.get('/recomendacion', obtenerRecomendaciones);
 app.post('/lugarrecomendacion', obtenerRecomendacionesLugar);
-//app.post('/recomendacion', crearRecomendacion);
+app.post('/recomendacion', crearRecomendaciones);
+app.put('/recomendacion', modificarRecomendacion);
 
 //lugares
 app.get('/lugar', obtenerLugares);

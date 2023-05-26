@@ -49,23 +49,46 @@ async function obtenerRecomendacionesLugar(req, res) {
 
 // Crear un nuevo Recomendaciones
 async function crearRecomendaciones(req, res) {
-  const { nombre, apellidos, password, correo, admin } = req.body;
+  const { nombre, imagen, descripcion, idLugar } = req.body;
 
   try {
 
     const nuevoRecomendaciones = await prisma.recomendacion.create({
         data: {
+          nombre,
           imagen,
           descripcion,
-          correo,
-          admin
+          idLugar
         }
       });
     res.json(nuevoRecomendaciones);
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: "No se pudo crear Recomendaciones" });
+    res.status(500).json({ error: "No se pudo crear Recomendacion" });
   }
 }
 
-export { obtenerRecomendaciones, crearRecomendaciones, obtenerRecomendacionesLugar };
+// modificar un hotel
+async function modificarRecomendacion(req, res) {
+  const { nombre, imagen, descripcion, idLugar, idRecomendacion } = req.body;
+
+  try {
+    const nuevoRecomendacion = await prisma.recomendacion.update({
+        where:{
+          idRecomendacion:idRecomendacion
+        },
+        data: {
+          nombre,
+          imagen,
+          descripcion,
+          idLugar,
+        }
+      });
+    res.json(nuevoRecomendacion);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "No se pudo modificar el Hotel" });
+  }
+}
+
+export { obtenerRecomendaciones, crearRecomendaciones, obtenerRecomendacionesLugar, modificarRecomendacion };
