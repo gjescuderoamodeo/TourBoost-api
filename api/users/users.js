@@ -96,6 +96,45 @@ async function obtenerUsuario(req, res) {
   }
 }
 
+//borrar usuario
+async function borrarUsuario(req, res) {
+  const { idUsuario } = req.params;
+
+  try {
+    // Borrar todas las reservas del usuario
+    await prisma.reserva.deleteMany({
+      where: {
+        idUsuario: parseInt(idUsuario),
+      },
+    });
+
+    // Borrar todos los marcadores del usuario
+    await prisma.marcador.deleteMany({
+      where: {
+        idUsuario: parseInt(idUsuario),
+      },
+    });
+
+    // Borrar el usuario
+    const usuario = await prisma.usuario.delete({
+      where: {
+        idUsuario: parseInt(idUsuario),
+      },
+      select: {
+        idUsuario: true,
+        nombre: true,
+        apellidos: true,
+        correo: true,
+      },
+    });
+
+    res.json(usuario);
+  } catch (error) {
+    res.status(500).json({ error: "No se pudo borrar el usuario" });
+  }
+}
+
+
 // Comprobar si es admin
 async function adminCheck(req, res) {
   const {correo} = req.body;
@@ -203,4 +242,4 @@ function autenticar(req, res, next) {
   }
 }
 
-export { obtenerUsuarios, crearUsuario, login, autenticar, adminCheck, obtenerUsuario, actualizarUsuario };
+export { obtenerUsuarios, crearUsuario, login, autenticar, adminCheck, obtenerUsuario, borrarUsuario, actualizarUsuario };

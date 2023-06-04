@@ -1,5 +1,5 @@
 import express from 'express';
-import { obtenerUsuarios, adminCheck, crearUsuario, login, autenticar, obtenerUsuario, actualizarUsuario } from './api/users/users.js';
+import { obtenerUsuarios, borrarUsuario, adminCheck, crearUsuario, login, autenticar, obtenerUsuario, actualizarUsuario } from './api/users/users.js';
 import { crearRecomendaciones ,obtenerRecomendaciones, obtenerRecomendacionesLugar, borrarRecomendacion, modificarRecomendacion } from './api/recomendacion/recomendacion.js';
 import { instanciaSingleton } from './prisma/prisma.js';
 import dotenv from 'dotenv';
@@ -22,6 +22,7 @@ app.use(express.json());
 app.get('/usuario',autenticar, obtenerUsuarios);
 app.put('/usuario', actualizarUsuario);
 app.post('/usuario', crearUsuario);
+app.delete('/usuario', borrarUsuario);
 app.get('/usuario/:idUsuario', obtenerUsuario);
 app.post('/usuario/admin', adminCheck);
 
