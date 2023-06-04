@@ -104,21 +104,21 @@ async function borrarUsuario(req, res) {
     // Borrar todas las reservas del usuario
     await prisma.reserva.deleteMany({
       where: {
-        idUsuario: idUsuario,
+        idUsuario: { equals: idUsuario },
       },
     });
 
     // Borrar todos los marcadores del usuario
     await prisma.marcador.deleteMany({
       where: {
-        idUsuario: idUsuario,
+        idUsuario: { equals: idUsuario },
       },
     });
 
     // Borrar el usuario
     const usuario = await prisma.usuario.delete({
       where: {
-        idUsuario: idUsuario,
+        idUsuario: { equals: idUsuario },
       },
       select: {
         idUsuario: true,
