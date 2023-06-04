@@ -98,7 +98,7 @@ async function obtenerUsuario(req, res) {
 
 //borrar usuario
 async function borrarUsuario(req, res) {
-  const { idUsuario } = req.params;
+  const { idUsuario } = req.body;
 
   try {
     // Borrar todas las reservas del usuario
