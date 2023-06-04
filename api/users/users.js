@@ -92,7 +92,7 @@ async function obtenerUsuario(req, res) {
     });
     res.json(usuario);
   } catch (error) {
-    res.status(500).json({ error: "No se pudo obtener un usuario" });
+    res.status(500).json({ error: "No se pudo obtener el usuario" , errorMessage: error.message });
   }
 }
 
