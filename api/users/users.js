@@ -130,7 +130,7 @@ async function borrarUsuario(req, res) {
 
     res.json(usuario);
   } catch (error) {
-    res.status(500).json({ error: "No se pudo borrar el usuario" });
+    res.status(500).json({ error: "No se pudo borrar el usuario", errorMessage: error.message });
   }
 }
 
