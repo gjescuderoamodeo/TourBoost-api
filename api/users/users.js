@@ -34,7 +34,7 @@ async function actualizarUsuario(req, res) {
   //
   try {
     const usuario = await prisma.usuario.findFirst({
-      where:{idUsuario:parseInt(idUsuario)}
+      where:{idUsuario:idUsuario}
     });
     
     //si nombre vacio
@@ -56,7 +56,7 @@ async function actualizarUsuario(req, res) {
       }
 
       const usuarioNew = await prisma.usuario.updateMany(      
-        {where:{idUsuario:parseInt(idUsuario)},
+        {where:{idUsuario:idUsuario},
         data: {
           nombre: newUser.nombre,
           apellidos: newUser.apellidos,
@@ -82,7 +82,7 @@ async function obtenerUsuario(req, res) {
 
   try {
     const usuario = await prisma.usuario.findFirst({
-      where:{idUsuario:parseInt(idUsuario)},
+      where:{idUsuario:idUsuario},
       select: {
         idUsuario: true,
         nombre: true,
@@ -104,21 +104,21 @@ async function borrarUsuario(req, res) {
     // Borrar todas las reservas del usuario
     await prisma.reserva.deleteMany({
       where: {
-        idUsuario: parseInt(idUsuario),
+        idUsuario: idUsuario,
       },
     });
 
     // Borrar todos los marcadores del usuario
     await prisma.marcador.deleteMany({
       where: {
-        idUsuario: parseInt(idUsuario),
+        idUsuario: idUsuario,
       },
     });
 
     // Borrar el usuario
     const usuario = await prisma.usuario.delete({
       where: {
-        idUsuario: parseInt(idUsuario),
+        idUsuario: idUsuario,
       },
       select: {
         idUsuario: true,
