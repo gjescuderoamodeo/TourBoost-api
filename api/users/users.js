@@ -124,7 +124,7 @@ async function borrarUsuario(req, res) {
 
     res.json(usuario);
   } catch (error) {
-    res.status(500).json({ error: "No se pudo borrar el usuario", errorMessage: error.message });
+    res.status(500).json({ error: `No se pudo borrar el usuario ${idUsuario}`, errorMessage: error.message });
   }
 }
 
