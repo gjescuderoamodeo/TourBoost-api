@@ -66,7 +66,7 @@ async function obtenerReservasPorUsuario(req, res) {
       res.json(reservas);
     } catch (error) {
       console.error(error);
-      res.status(500).json({ error: "No se pudieron obtener las reservas" });
+      res.status(500).json({ error: "No se pudieron obtener las reservas", errorMessage: error.message });
     }
   }
   
